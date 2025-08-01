@@ -18,6 +18,16 @@
 //
 // Affiche sa valeur en décimal
 
+void printBit(unsigned char b) {
+
+    for (int i = 7; i >= 0; i--) {
+        printf("valeur en bit --> %i\n",(b >> i) & 1);
+    }
+
+}
+
+
+
 int main(void) {
     int a = 258;
 
@@ -30,6 +40,9 @@ int main(void) {
         printf("--> valeur pointeur %p\n", pointeur);
         printf("--> valeur en decimal %d\n", *pointeur);
         printf("--> valuer en hexa %02x\n", *pointeur);
+
+        printBit(*pointeur);
+
         pointeur++;
 
     }
