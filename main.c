@@ -2,21 +2,18 @@
 #include <stdio.h>
 
 
-// 🔹 Défi 1 : Lire chaque octet d’un int et afficher leur valeur + leur adresse
-// Énoncé :
-// Crée une variable int a = 258;
-//
-// Affiche sa valeur en décimal
-//
-// Parcours chaque octet de ce int (via cast en unsigned char*)
-//
-// Pour chaque octet :
-//
-// Affiche son adresse
-//
-// Affiche sa valeur en hexadécimal
-//
-// Affiche sa valeur en décimal
+// ✅ Énoncé :
+// Crée une variable int a = 42;
+// Crée un pointeur int* p = &a;
+// Crée un pointeur vers le pointeur : int** pp = &p;
+// Affiche :
+// La valeur de a (normal)
+// L’adresse de a
+// L’adresse de p
+// La valeur de p
+// L’adresse de pp
+// La valeur de pp
+// Et surtout : **pp → tu devrais obtenir 42
 
 void printBit(unsigned char b) {
 
@@ -29,21 +26,24 @@ void printBit(unsigned char b) {
 
 
 int main(void) {
-    int a = 258;
-
-    printf("--> valeur de a %d\n", a);
-
-    unsigned char* pointeur = (unsigned char*)&a;
+    int a = 42;
+    int* p = &a;
+    int** pp = &p;
 
 
-    for (int i = 0; i < sizeof(a); i++) {
-        printf("--> valeur pointeur %p\n", pointeur);
-        printf("--> valeur en decimal %d\n", *pointeur);
-        printf("--> valuer en hexa %02x\n", *pointeur);
+    printf("valeur de a -->%i\n",a);
+    printf("adresse de a -->%p\n",&a);
+    printf("valeur de p -->%p\n",p);
+    printf("adresse de p -->%p\n",&p);
+    printf("valeur de pp -->%p\n",pp);
+    printf("adresse de pp -->%p\n",&pp);
 
-        printBit(*pointeur);
+    printf("valeur de *pp %p\n",*pp);
 
-        pointeur++;
+    printf("valeur de **pp %i\n",**pp);
+
+
+
 
     }
 
@@ -52,4 +52,4 @@ int main(void) {
 
 
 
-}
+
