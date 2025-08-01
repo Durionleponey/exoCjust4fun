@@ -1,46 +1,36 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-
-// ✅ Énoncé :
-// Crée une variable int a = 42;
-// Crée un pointeur int* p = &a;
-// Crée un pointeur vers le pointeur : int** pp = &p;
-// Affiche :
-// La valeur de a (normal)
-// L’adresse de a
-// L’adresse de p
-// La valeur de p
-// L’adresse de pp
-// La valeur de pp
-// Et surtout : **pp → tu devrais obtenir 42
-
-void printBit(unsigned char b) {
-
-    for (int i = 7; i >= 0; i--) {
-        printf("valeur en bit --> %i\n",(b >> i) & 1);
-    }
-
-}
-
+//en gros faire un buffer overflow
 
 
 int main(void) {
+
+    char b[4]="hey";
+
+    printf("adresse de b %p\n",&b[0]);
+
     int a = 42;
-    int* p = &a;
-    int** pp = &p;
+
+    printf("adresse de a %p\n",&a);
+    printf("valeur de a %i\n",a);
+
+    b[5]=1;
+    b[6]=1;
+
+    printf("adresse de a modif %i\n",a);
 
 
-    printf("valeur de a -->%i\n",a);
-    printf("adresse de a -->%p\n",&a);
-    printf("valeur de p -->%p\n",p);
-    printf("adresse de p -->%p\n",&p);
-    printf("valeur de pp -->%p\n",pp);
-    printf("adresse de pp -->%p\n",&pp);
 
-    printf("valeur de *pp %p\n",*pp);
+    char *p = &b[0];
+    p++;//avant de 1 octe car est de tyle char
+    printf("adresse de p %p\n",p);
+    printf("valeur pointé par p %c\n",*p);
 
-    printf("valeur de **pp %i\n",**pp);
+    for (int i=0;i<8;i++) {
+        printf("bit %i de *p -->%i\n",i,(*p >> i) & 1);
+    }
+
 
 
 
